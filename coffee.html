@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Raleway" >
     <!-- Our CSS -->
     <link rel="stylesheet" href="static/coffee.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -48,20 +49,36 @@
 
     // Set these variables to their DOM elements
 
-    let coffeeImage = document.querySelector("#coffee-image");
-    coffeeImage.setAttribute('src', 'static/coffee_beans.jpg');
+    // let coffeeImage = document.querySelector("#coffee-image");
+    // coffeeImage.setAttribute('src', 'static/coffee_beans.jpg');
+
+    // function makeCoffee(){
+    //     coffeeImage.setAttribute('src', 'static/coffee_machine.jpg');
+    //     setTimeout(function(){
+    //         coffeeImage.setAttribute('src', 'static/coffee_mug.jpg');
+    //         }, 1500);
+    //     setTimeout(function(){
+    //         coffeeImage.setAttribute('src', 'static/coffee_beans.jpg');
+    //         }, 4000);
+    // }
+
+    // coffeeImage.addEventListener('click', makeCoffee);
+
+    //TRANSLATE TO JQUERY
+    $("#coffee-image").attr('src', 'static/coffee_beans.jpg');
+
+    $("#coffee-image").on('click', makeCoffee);
 
     function makeCoffee(){
-        coffeeImage.setAttribute('src', 'static/coffee_machine.jpg');
+        $("#coffee-image").attr('src', 'static/coffee_machine.jpg');
         setTimeout(function(){
-            coffeeImage.setAttribute('src', 'static/coffee_mug.jpg');
+            $("#coffee-image").attr('src', 'static/coffee_mug.jpg');
             }, 1500);
         setTimeout(function(){
-            coffeeImage.setAttribute('src', 'static/coffee_beans.jpg');
+            $("#coffee-image").attr('src', 'static/coffee_beans.jpg');
             }, 4000);
     }
 
-    coffeeImage.addEventListener('click', makeCoffee);
 
     
 

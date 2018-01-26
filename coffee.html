@@ -67,9 +67,12 @@
     //TRANSLATE TO JQUERY
     $("#coffee-image").attr('src', 'static/coffee_beans.jpg');
 
-    $("#coffee-image").on('click', makeCoffee);
+    $("#coffee-image").on('click', function() {makeCoffee("brew");});
 
-    function makeCoffee(){
+    let drinksOrdered = [];
+    
+
+    function makeCoffee(drinkType) {
         $("#coffee-image").attr('src', 'static/coffee_machine.jpg');
         setTimeout(function(){
             $("#coffee-image").attr('src', 'static/coffee_mug.jpg');
@@ -77,12 +80,27 @@
         setTimeout(function(){
             $("#coffee-image").attr('src', 'static/coffee_beans.jpg');
             }, 4000);
+        drinksOrdered.push(drinkType);
+        console.log(drinksOrdered);
+        revenueMessage.innerHTML = revenue(drinksOrdered);
     }
 
+    $("#espresso").on('click', function() {makeCoffee("espresso");});
 
+    $("#latte").on('click', function() {makeCoffee("latte");});
+
+    $("#hot-chocolate").on('click', function() {makeCoffee("hot-chocolate");});
     
 
-    let revenueMessage;
+    let revenueMessage = document.querySelector("#revenue");
+
+    function revenue(drinksOrdered){
+        let total = 0;
+        for (let drink of drinksOrdered){
+            total += prices[drink];
+        }
+        return total;
+    }
 
     // use this JavaScript object in further study step
 
@@ -90,7 +108,7 @@
         "brew": 2.05,
         "espresso": 3.25,
         "latte": 4.15,
-        "hot chocolate": 2.50
+        "hot-chocolate": 2.50
     };
 
 
